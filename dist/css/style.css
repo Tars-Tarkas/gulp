@@ -1,0 +1,27 @@
+body {
+  font-size: 16px;
+  color: blue;
+  display: flex;
+}
+
+h1 {
+  color: red;
+}
+
+span {
+  font-size: 20px;
+}
+
+div {
+  font-size: 30px;
+}
+
+@media (max-wigth: 767px) {
+  span {
+    font-size: 15px;
+  }
+
+  div {
+    font-size: 20px;
+  }
+}
