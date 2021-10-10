@@ -36,7 +36,10 @@ let { src, dest } = require('gulp'),
     autoPrefixer = require('gulp-autoprefixer'),
     group_media = require("gulp-group-css-media-queries"),
     cleanCSS = require("gulp-clean-css"),
-    rename = require("gulp-rename");
+    rename = require("gulp-rename"),
+    uglify = require("gulp-uglify-es").default,
+    imagemin = require("gulp-imagemin"),
+    webp = require("gulp-webp");
 
 function browserSync(params) {
     browsersync.init({
@@ -57,6 +60,7 @@ function html() {
 
 function css() {
     return src(path.src.css)
+        .pipe(fileincludes())
         .pipe(
             scss({
                 outputStyle: "expanded"
@@ -69,12 +73,12 @@ function css() {
 
     .pipe(group_media())
 
-    .pipe(dest(path.build.css)) //выгружает файл
+    .pipe(dest(path.build.css)) //выгружаем файл
 
     .pipe(cleanCSS()) // очищает
 
     .pipe(rename({
-        extname: ".min.css" //переименовывает
+        extname: ".min.css" //переименовываем
     }))
 
     .pipe(dest(path.build.css)) // опять выгружает, но без двух операций сверху
@@ -82,20 +86,57 @@ function css() {
     .pipe(browsersync.stream())
 }
 
-function watchFiles() {
+function js() {
+    return src(path.src.js)
+        .pipe(fileincludes())
+        .pipe(dest(path.build.js)) //выгружаем файл
+        .pipe(uglify())
+        .pipe(rename({
+            extname: ".min.js" //переименовываем
+        }))
+        .pipe(dest(path.build.js)) //выгружаем файл
+        .pipe(browsersync.stream())
+}
+
+function images() {
+    return src(path.src.img)
+        .pipe(
+            webp({
+                quality: 70
+            })
+        )
+        .pipe(dest(path.build.img))
+        .pipe(src(path.src.img))
+        .pipe(
+            imagemin({
+                progressive: true,
+                svgPlugins: [{ removeViewBox: false }],
+                interlaced: true,
+                optimizationLevel: 3
+            }))
+        .pipe(dest(path.build.img))
+        .pipe(browsersync.stream())
+}
+
+function watchFiles() { //прослушка файлов на изменение и с последующим обновлением
     gulp.watch([path.watch.html], html);
     gulp.watch([path.watch.css], css);
+    gulp.watch([path.watch.js], js);
+    gulp.watch([path.watch.img], images);
 }
 
 function clean() {
     return del(path.clean);
 }
 
-let build = gulp.series(clean, gulp.parallel(css, html));
+let build = gulp.series(clean, gulp.parallel(css, html, js, images));
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
-exports.css = css;
+
 exports.html = html;
+exports.css = css;
+exports.js = js;
+exports.images = images;
 exports.build = build;
 exports.watch = watch;
 exports.default = watch;

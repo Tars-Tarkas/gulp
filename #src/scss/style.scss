@@ -1,23 +1,51 @@
+@import "_normalize.scss";
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
 body {
-    font-size: 16px;
-    color: blue;
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+}
+
+.wrap {
+    max-width: 1070px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.menu {
+    background-color: burlywood;
+    padding: 10px 10px;
+}
+
+.link_menu {
     display: flex;
-}
-
-h1 {
-    color: red;
-}
-
-span {
-    font-size: 20px;
-    @media (max-wigth: 767px) {
-        font-size: 15px;
+    justify-content: space-between;
+    a {
+        text-decoration: none;
+        text-decoration-line: none;
     }
 }
 
-div {
-    font-size: 30px;
-    @media (max-wigth: 767px) {
-        font-size: 20px;
-    }
+.bg_img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh
+}
+
+main {
+    min-height: calc(100vh - 90px - 18px);
+}
+
+footer {
+    height: 90px;
+    background: cornflowerblue;
 }
