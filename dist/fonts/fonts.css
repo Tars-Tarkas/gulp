@@ -1,0 +1,40 @@
+@font-face {
+	font-family: 'Oswald';
+	font-style: normal;
+	font-weight: 400;
+	font-display: auto;
+	font-stretch: normal;
+	src: url(Oswald-normal-400.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+	font-family: 'Oswald';
+	font-style: normal;
+	font-weight: 700;
+	font-display: auto;
+	font-stretch: normal;
+	src: url(Oswald-normal-700.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 500;
+	font-display: auto;
+	font-stretch: normal;
+	src: url(Roboto-italic-500.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 500;
+	font-display: auto;
+	font-stretch: normal;
+	src: url(Roboto-normal-500.woff) format('woff');
+	unicode-range: U+0-10FFFF;
+}
+

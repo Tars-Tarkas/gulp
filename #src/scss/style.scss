@@ -1,4 +1,16 @@
-@import "_normalize.scss";
+//@import "_normalize.scss";
+@import "_fonts.scss";
+@mixin fonts($font_name, $file_name, $weight, $style) {
+    @font-face {
+        font-family: $font_name;
+        src: url("../fonts/#{$file_name}.woff") format("woff"),
+        url("../fonts/#{$file_name}.woff2") format("woff2");
+        font-display: swap;
+        font-weight: #{$weight};
+        font-size: #{$style};
+    }
+}
+
 * {
     box-sizing: border-box;
 }
