@@ -414,6 +414,8 @@ body {
   text-decoration: none;
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
+  color: black;
+  text-transform: uppercase;
 }
 
 .bg_img {

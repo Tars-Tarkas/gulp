@@ -34,12 +34,15 @@ let { src, dest } = require('gulp'),
     del = require("del"),
     scss = require('gulp-sass')(require('sass')),
     autoPrefixer = require('gulp-autoprefixer'),
-    group_media = require("gulp-group-css-media-queries"),
-    cleanCSS = require("gulp-clean-css"),
+    group_media = require("gulp-group-css-media-queries"), //сгрупировывает медиа запросы
+    cleanCSS = require("gulp-clean-css"), //очищает стили
     rename = require("gulp-rename"),
-    uglify = require("gulp-uglify-es").default,
-    imagemin = require("gulp-imagemin"),
-    webp = require("gulp-webp");
+    uglify = require("gulp-uglify-es").default, //сэимает  ЖиС код
+    imagemin = require("gulp-imagemin"), // пережимает картинки
+    webp = require("gulp-webp"), // конвертор в ВебП
+    webphtml = require("gulp-webp-html"),
+    webpcss = require("gulp-webpcss"),
+    svgSprite = require("gulp-svg-sprite"); //собирает свг файлы
 
 function browserSync(params) {
     browsersync.init({
@@ -54,6 +57,7 @@ function browserSync(params) {
 function html() {
     return src(path.src.html)
         .pipe(fileincludes())
+        .pipe(webphtml())
         .pipe(dest(path.build.html))
         .pipe(browsersync.stream())
 }
@@ -70,6 +74,8 @@ function css() {
     .pipe(autoPrefixer({
         cascade: true
     }))
+
+    .pipe(webpcss())
 
     .pipe(group_media())
 
