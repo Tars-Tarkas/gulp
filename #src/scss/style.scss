@@ -1,16 +1,16 @@
 //@import "_normalize.scss";
-@import "_fonts.scss";
-@mixin fonts($font_name, $file_name, $weight, $style) {
+@mixin font($font_name, $file_name, $weight, $style) {
     @font-face {
         font-family: $font_name;
+        font-display: swap;
         src: url("../fonts/#{$file_name}.woff") format("woff"),
         url("../fonts/#{$file_name}.woff2") format("woff2");
-        font-display: swap;
         font-weight: #{$weight};
-        font-size: #{$style};
+        font-style: #{$style};
     }
 }
 
+@import "fonts";
 * {
     box-sizing: border-box;
 }
@@ -23,6 +23,7 @@ body {
     position: relative;
     margin: 0;
     min-height: 100%;
+    font-family: "Nort";
 }
 
 .wrap {
