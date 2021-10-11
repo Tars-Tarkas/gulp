@@ -17,7 +17,7 @@ let path = {
         css: source_folder + "/scss/style.scss",
         js: source_folder + "/js/scrypt.js",
         img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
-        fonts: source_folder + "/fonts/*.ttf",
+        fonts: source_folder + "/fonts/*.{ttf,otf,woff,woff2}",
     },
     watch: {
         html: source_folder + "/**/*.html",
@@ -48,6 +48,7 @@ let { src, dest } = require('gulp'),
     ttf2woff2 = require("gulp-ttf2woff2"), //конвертируем шрифты
     fonter = require("gulp-fonter"), //конвертируем из otf в ttf
     googleWebFonts = require("gulp-google-webfonts"); //качалка шрифтов с Гугла
+
 
 function browserSync(params) {
     browsersync.init({
@@ -169,19 +170,21 @@ function fontsStyle(params) { //подключение шрифтов
 
 function cb() {}
 
-function callBack() {
 
-}
 var options = {
-    fontsDir: 'googlefonts/',
-    cssFilename: 'myGoogleFonts.css'
+    fontsDir: 'fonts/',
+    cssDir: 'fonts/',
+    cssFilename: 'GoogleFonts.css'
 };
 
-gulp.task('fontsG', function() { //качаем шрифты с Гугла
-    return src(source_folder + '/fonts/fonts.list')
+gulp.task('fontsg', function() {
+    return src([source_folder + '/fonts/fonts.list'])
         .pipe(googleWebFonts(options))
-        .pipe(dest(path.src.fonts));
+        .pipe(dest(source_folder));
 });
+
+//gulp.task('default', ['fontsg']);
+
 
 /*
 function testWebP(callback) { //JS-функция определения поддержки WebP
