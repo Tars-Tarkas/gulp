@@ -1,12 +1,12 @@
 {
-    "name": "gulp",
+    "name": "metalamp_t2",
     "version": "1.0.0",
     "description": "1",
     "main": "index.html",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "Molodyk Andrey",
     "license": "ISC",
     "devDependencies": {
         "browser-sync": "^2.27.5",
@@ -30,5 +30,16 @@
         "gulp-webpcss": "^1.1.1",
         "sass": "latest",
         "webp-converter": "^2.2.3"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tars-Tarkas/MetaLamp_T2.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Tars-Tarkas/MetaLamp_T2.git/issues"
+    },
+    "homepage": "https://github.com/Tars-Tarkas/MetaLamp_T2.git#readme",
+    "keywords": [
+        "layout"
+    ]
 }
